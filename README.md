@@ -1,67 +1,113 @@
-# Language Validator - Chrome Extension
+# 🌐 Language Validator - Chrome Extension
 
-Una extensión para Google Chrome que valida si el contenido de una página web está en el idioma seleccionado (español o inglés).
+Extensión experta en semántica de idiomas español e inglés que valida el contenido de páginas web y sugiere mejoras de escritura.
 
-## Características
+## ✨ Características Principales
 
-- ✅ **Detección de idioma inteligente**: Analiza el texto de la página usando patrones lingüísticos específicos para español e inglés
-- ✅ **Selección de idioma**: Permite elegir entre validar contenido en español o inglés
-- ✅ **Análisis detallado**: Revisa cada elemento de texto visible en la página
-- ✅ **Reporte de problemas**: Muestra qué elementos no están en el idioma seleccionado
-- ✅ **Estadísticas**: Proporciona un resumen del porcentaje de contenido correcto
-- ✅ **Persistencia**: Recuerda tu preferencia de idioma entre sesiones
+### 🔍 Validación de Idioma
+- **Selector de idioma**: Elige entre Español o Inglés como idioma objetivo
+- **Detección inteligente**: Analiza cada elemento de texto en la página
+- **Patrones lingüísticos**: Usa palabras comunes, caracteres especiales y terminaciones verbales
+- **Confianza de detección**: Solo reporta problemas con alta confianza (>60%)
 
-## Cómo instalar
+### 📝 Análisis Semántico
+Detecta problemas de escritura y contenido incompleto:
+- Espacios excesivos entre palabras
+- Números sin contexto claro
+- URLs sin texto descriptivo
+- Uso excesivo de mayúsculas
+- Puntos suspensivos excesivos
+- Fragmentos incompletos
 
-1. Abre Google Chrome y navega a `chrome://extensions/`
-2. Activa el "Modo de desarrollador" en la esquina superior derecha
-3. Haz clic en "Cargar descomprimida"
-4. Selecciona la carpeta `/workspace` donde se encuentra esta extensión
-5. La extensión aparecerá en tu barra de herramientas
+### 💡 Sugerencias de Mejora
+**Para Español:**
+- Redundancias temporales ("actualmente", "hoy en día")
+- Dqueísmo (uso incorrecto de "de que")
+- Quesuismo (construcciones con "que su")
 
-## Cómo usar
+**Para Inglés:**
+- Voz pasiva excesiva
+- Frases redundantes o wordy
+- Intensificadores redundantes
 
-1. Navega a cualquier página web
-2. Haz clic en el icono de la extensión (círculo morado con "ES/EN")
-3. Selecciona el idioma que quieres validar (Español o English)
-4. Haz clic en "Validar Página"
-5. Revisa los resultados:
-   - ✅ Verde: Todo el contenido está en el idioma seleccionado
-   - ⚠️ Amarillo: La mayoría del contenido es correcto (>80%)
-   - ❌ Rojo: Hay problemas significativos de idioma
+### 🎯 Resaltado Selectivo en el DOM
+- **Elige qué resaltar**: No se resaltan todos los errores automáticamente
+- **Botón individual**: Cada problema tiene su botón "🔍 Resaltar"
+- **Visualización clara**: Elementos resaltados con fondo amarillo y borde rojo
+- **Scroll automático**: La página se desplaza suavemente al elemento resaltado
+- **Quitar resaltado**: Botón para eliminar el resaltado individual o todos a la vez
 
-## Estructura de archivos
+## 📁 Estructura de Archivos
 
 ```
-/workspace
-├── manifest.json       # Configuración de la extensión
-├── popup.html          # Interfaz de usuario del popup
-├── popup.js            # Lógica del popup
-├── content.js          # Script que analiza el contenido de la página
-├── background.js       # Service worker en segundo plano
-├── icons/              # Iconos de la extensión
+language-validator/
+├── manifest.json          # Configuración de la extensión (Manifest V3)
+├── popup.html             # Interfaz de usuario del popup
+├── popup.js               # Lógica del popup
+├── content.js             # Script de contenido (análisis y resaltado)
+├── background.js          # Service worker
+├── icons/                 # Iconos de la extensión
 │   ├── icon16.png
 │   ├── icon48.png
 │   └── icon128.png
-└── README.md           # Este archivo
+└── README.md              # Este archivo
 ```
 
-## Tecnología de detección de idioma
+## 🚀 Instalación
 
-La extensión utiliza un algoritmo basado en:
+1. Abre Google Chrome
+2. Ve a `chrome://extensions/`
+3. Activa el **"Modo de desarrollador"** (toggle en la esquina superior derecha)
+4. Haz clic en **"Cargar descomprimida"**
+5. Selecciona la carpeta `/workspace` (donde está esta extensión)
+6. ¡Listo! La extensión aparecerá en tu barra de extensiones
 
-- **Palabras comunes**: Compara el texto con listas de palabras frecuentes en cada idioma
-- **Caracteres especiales**: Detecta caracteres únicos como ñ, á, é, í, ó, ú, ¿, ¡ para español
-- **Terminaciones verbales**: Identifica patrones como -ar, -er, -ir (español) o -ing, -ed (inglés)
-- **Artículos y pronombres**: Analiza el uso de artículos específicos de cada idioma
+## 📖 Cómo Usar
 
-## Notas
+1. **Selecciona el idioma** que quieres validar (Español o English)
+2. Haz clic en **"Validar Página"**
+3. Revisa los resultados en las tres pestañas:
+   - **Idioma**: Elementos detectados en idioma incorrecto
+   - **Semántica**: Problemas de escritura y contenido incompleto
+   - **Sugerencias**: Recomendaciones de mejora agregadas
+4. Para resaltar un elemento en la página:
+   - Haz clic en **"🔍 Resaltar"** en el problema que te interese
+   - La página hará scroll hasta ese elemento y lo resaltará
+5. Usa **"Quitar Resaltados"** para limpiar todos los resaltados
 
-- La extensión solo analiza texto visible, ignorando scripts, estilos y otros elementos no visibles
-- Textos muy cortos (< 3 caracteres) pueden no ser analizados
-- La detección es más precisa con textos más largos
-- La extensión funciona sin conexión a internet (todo el análisis es local)
+## 🎨 Interfaz
 
-## Licencia
+La extensión muestra:
+- **Estadísticas**: Elementos analizados, correctos y problemas
+- **Resumen**: Porcentaje de contenido en el idioma correcto
+- **Lista de problemas**: Cada uno con:
+  - Etiqueta del elemento HTML
+  - Texto detectado (truncado si es largo)
+  - Idioma detectado y nivel de confianza
+  - Botones de acción (resaltar/quitar resaltado)
+  - Sugerencias adicionales si aplican
 
-Esta extensión es de código abierto y puede ser modificada libremente.
+## 🔧 Personalización
+
+Puedes modificar los patrones de detección en `content.js`:
+- `languagePatterns.es` y `languagePatterns.en`: Patrones por idioma
+- `semanticIssues`: Patrones para problemas semánticos
+- `writingSuggestions`: Sugerencias de escritura específicas
+
+## 📝 Notas Técnicas
+
+- **Manifest V3**: Compatible con las últimas versiones de Chrome
+- **Offline**: Funciona sin conexión a internet
+- **Rendimiento**: Análisis eficiente usando TreeWalker
+- **Privacidad**: No envía datos a servidores externos
+
+## 🛠️ Desarrollo
+
+Para hacer cambios:
+1. Edita los archivos en `/workspace`
+2. En `chrome://extensions/`, haz clic en el botón de recargar 🔄
+3. Prueba los cambios en una página web
+
+## 📄 Licencia
+
+MIT License - Libre uso y modificación.
